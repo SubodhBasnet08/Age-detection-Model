@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Age Detection Model</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">CN6000 - Python - OpenCV DNN - Caffe</p>
+            <h1>Age Detection Model</h1>
+          </div>
+          <div class="status" id="modeStatus">Ready</div>
+        </header>
+
+        <section class="stage">
+          <div class="preview">
+            <img id="previewImage" alt="Analyzed result" />
+            <div class="empty" id="emptyState">
+              <span>Upload a face image or start the camera</span>
+            </div>
+          </div>
+
+          <aside class="controls">
+            <div class="modelbox">
+              <span>Model</span>
+              <strong>OpenCV DNN pre-trained Caffe age model</strong>
+            </div>
+            <label class="upload" for="fileInput">
+              <input id="fileInput" type="file" accept="image/*" />
+              <span>Choose image</span>
+            </label>
+            <button id="cameraButton" type="button">Start camera</button>
+            <button id="captureButton" type="button" disabled>Capture frame</button>
+            <button id="downloadButton" type="button" disabled>Download result</button>
+            <button id="clearButton" type="button">Clear</button>
+            <button id="resetCountButton" type="button">Reset count</button>
+            <video id="camera" playsinline muted></video>
+            <p class="note" id="modelNote">Open this app from http://127.0.0.1:8000, then upload a face image or allow camera access.</p>
+          </aside>
+        </section>
+
+        <section class="results">
+          <div class="metric">
+            <span>Faces</span>
+            <strong id="faceCount">0</strong>
+          </div>
+          <div class="metric">
+            <span>Total tests</span>
+            <strong id="totalTests">0</strong>
+          </div>
+          <div class="metric">
+            <span>Image quality</span>
+            <strong id="qualityStatus">Waiting</strong>
+          </div>
+          <div class="metric">
+            <span>Last test</span>
+            <strong id="lastTest">None</strong>
+          </div>
+        </section>
+
+        <section class="insights">
+          <div class="insight">
+            <span>Image number</span>
+            <strong id="imageNumber">0</strong>
+          </div>
+          <div class="insight wide">
+            <span>Classification</span>
+            <strong id="bestResult">Waiting for a test</strong>
+          </div>
+          <div class="insight wide">
+            <span>Detected features</span>
+            <strong id="featureSummary">No image analyzed yet</strong>
+          </div>
+        </section>
+
+        <section class="tablewrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Face</th>
+                <th>Age group</th>
+                <th>Caffe age range</th>
+                <th>Confidence</th>
+                <th>Pipeline</th>
+                <th>Note</th>
+              </tr>
+            </thead>
+            <tbody id="detections">
+              <tr>
+                <td colspan="7">No detections yet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="tablewrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Test</th>
+                <th>Time</th>
+                <th>Model</th>
+                <th>Faces</th>
+                <th>Quality</th>
+                <th>Summary</th>
+              </tr>
+            </thead>
+            <tbody id="history">
+              <tr>
+                <td colspan="6">No test history yet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </section>
+    </main>
+    <canvas id="captureCanvas"></canvas>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
